@@ -1,32 +1,53 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tris LAN/Ngrok</title>
+    <title>Tris Pro Multiplayer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="setup">
-        <h1>Tris Multiplayer</h1>
-        <input type="text" id="server-url" placeholder="Incolla link Ngrok o localhost">
-        <button id="connect-btn">Connettiti e Gioca</button>
+        <div class="glass-card">
+            <h1>Tris Pro</h1>
+            <p>Sfida il tuo amico a distanza</p>
+            <button id="connect-btn">CONNETTITI E GIOCA</button>
+        </div>
     </div>
 
     <div id="game" style="display:none;">
-        <h2 id="status">Tocca a te?</h2>
-        <div class="board" id="board">
-            <div class="cell" data-index="0"></div>
-            <div class="cell" data-index="1"></div>
-            <div class="cell" data-index="2"></div>
-            <div class="cell" data-index="3"></div>
-            <div class="cell" data-index="4"></div>
-            <div class="cell" data-index="5"></div>
-            <div class="cell" data-index="6"></div>
-            <div class="cell" data-index="7"></div>
-            <div class="cell" data-index="8"></div>
+        <div class="game-container">
+            <div class="left-panel">
+                <div id="status" class="badge">In attesa...</div>
+                <div id="my-symbol" class="badge-symbol"></div>
+                <div class="board" id="board">
+                    <div class="cell" data-index="0"></div>
+                    <div class="cell" data-index="1"></div>
+                    <div class="cell" data-index="2"></div>
+                    <div class="cell" data-index="3"></div>
+                    <div class="cell" data-index="4"></div>
+                    <div class="cell" data-index="5"></div>
+                    <div class="cell" data-index="6"></div>
+                    <div class="cell" data-index="7"></div>
+                    <div class="cell" data-index="8"></div>
+                </div>
+                <div id="history">
+                    <h3>Risultati precedenti</h3>
+                    <ul id="history-list"></ul>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="chat-container">
+                    <div id="chat-box"></div>
+                    <div class="chat-input">
+                        <input type="text" id="chat-msg" placeholder="Scrivi un messaggio...">
+                        <button id="send-chat">Invia</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button onclick="location.reload()">Reset</button>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>

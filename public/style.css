@@ -1,9 +1,25 @@
-body { font-family: sans-serif; background: #121212; color: white; text-align: center; }
-#setup { margin-top: 50px; }
-input { padding: 10px; width: 250px; border-radius: 5px; border: none; }
-button { padding: 10px 20px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 5px; margin-top: 10px; }
-.board { display: grid; grid-template-columns: repeat(3, 100px); gap: 10px; justify-content: center; margin: 20px auto; }
-.cell { width: 100px; height: 100px; background: #1e1e1e; border: 2px solid #333; display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; border-radius: 10px; }
-.cell:hover { background: #252525; }
-.x { color: #ff4757; }
-.o { color: #1e90ff; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; color: white; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
+.glass-card { background: rgba(30, 41, 59, 0.7); padding: 40px; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); text-align: center; }
+#connect-btn { background: #3b82f6; color: white; padding: 15px 30px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+#connect-btn:hover { background: #2563eb; transform: scale(1.05); }
+
+.game-container { display: flex; gap: 30px; max-width: 900px; width: 95%; }
+.left-panel { flex: 2; text-align: center; }
+.right-panel { flex: 1; background: #1e293b; border-radius: 15px; padding: 15px; display: flex; flex-direction: column; }
+
+.badge { background: #334155; padding: 10px; border-radius: 8px; margin-bottom: 10px; display: inline-block; }
+.badge-symbol { font-size: 1.2rem; color: #60a5fa; margin-bottom: 15px; font-weight: bold; }
+
+.board { display: grid; grid-template-columns: repeat(3, 100px); gap: 8px; margin: 0 auto; }
+.cell { width: 100px; height: 100px; background: #334155; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; cursor: pointer; transition: 0.2s; }
+.cell:hover { background: #475569; }
+.cell.x { color: #f87171; }
+.cell.o { color: #60a5fa; }
+
+#history { margin-top: 20px; text-align: left; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; height: 100px; overflow-y: auto; }
+#history-list { list-style: none; padding: 0; margin: 0; font-size: 0.9rem; }
+
+#chat-box { flex-grow: 1; overflow-y: auto; background: #0f172a; border-radius: 10px; padding: 10px; margin-bottom: 10px; height: 300px; text-align: left; }
+.chat-input { display: flex; gap: 5px; }
+#chat-msg { flex-grow: 1; padding: 8px; border-radius: 5px; border: none; }
+#send-chat { background: #10b981; color: white; border: none; padding: 8px; border-radius: 5px; cursor: pointer; }
