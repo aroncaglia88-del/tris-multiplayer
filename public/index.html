@@ -1,54 +1,75 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tris Pro Multiplayer</title>
+    <title>Tris Multiplayer Pro</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="setup">
-        <div class="glass-card">
-            <h1>Tris Pro</h1>
-            <p>Sfida il tuo amico a distanza</p>
-            <button id="connect-btn">CONNETTITI E GIOCA</button>
+    <div id="screen-login" class="screen">
+        <div class="card">
+            <h1>TRIS MULTIPLAYER</h1>
+            <input type="text" id="user-input" placeholder="Tuo nome...">
+            <button onclick="login()">CONNETTITI E GIOCA</button>
         </div>
     </div>
 
-    <div id="game" style="display:none;">
-        <div class="game-container">
-            <div class="left-panel">
-                <div id="status" class="badge">In attesa...</div>
-                <div id="my-symbol" class="badge-symbol"></div>
-                <div class="board" id="board">
-                    <div class="cell" data-index="0"></div>
-                    <div class="cell" data-index="1"></div>
-                    <div class="cell" data-index="2"></div>
-                    <div class="cell" data-index="3"></div>
-                    <div class="cell" data-index="4"></div>
-                    <div class="cell" data-index="5"></div>
-                    <div class="cell" data-index="6"></div>
-                    <div class="cell" data-index="7"></div>
-                    <div class="cell" data-index="8"></div>
+    <div id="screen-lobby" class="screen" style="display:none;">
+        <div class="lobby-layout">
+            <div class="rooms-container">
+                <h2>10 Stanze Disponibili</h2>
+                <div id="rooms-grid"></div>
+            </div>
+            <div class="lobby-chat">
+                <h3>Chat Lobby</h3>
+                <div id="lobby-chat-box" class="chat-box"></div>
+                <div class="input-area">
+                    <input type="text" id="lobby-input" placeholder="Messaggio lobby...">
+                    <button onclick="sendLobbyMsg()">Invia</button>
                 </div>
-                <div id="history">
-                    <h3>Risultati precedenti</h3>
+            </div>
+        </div>
+    </div>
+
+    <div id="screen-game" class="screen" style="display:none;">
+        <div class="top-nav">
+            <button class="nav-btn" onclick="location.reload()">← Stanze</button>
+            <button class="exit-btn" onclick="window.location.href='https://www.google.com'">Esci</button>
+        </div>
+        
+        <div class="game-layout">
+            <div class="game-main">
+                <div id="countdown"></div>
+                <div id="game-status">In attesa...</div>
+                <div id="board" class="board">
+                    <div class="cell" data-index="0"></div><div class="cell" data-index="1"></div><div class="cell" data-index="2"></div>
+                    <div class="cell" data-index="3"></div><div class="cell" data-index="4"></div><div class="cell" data-index="5"></div>
+                    <div class="cell" data-index="6"></div><div class="cell" data-index="7"></div><div class="cell" data-index="8"></div>
+                </div>
+                <div class="history">
+                    <h4>Ultimi Risultati</h4>
                     <ul id="history-list"></ul>
                 </div>
             </div>
 
-            <div class="right-panel">
-                <div class="chat-container">
-                    <div id="chat-box"></div>
-                    <div class="chat-input">
-                        <input type="text" id="chat-msg" placeholder="Scrivi un messaggio...">
-                        <button id="send-chat">Invia</button>
-                    </div>
+            <div class="game-chat-side">
+                <div class="chat-tabs">
+                    <button id="btn-tab-room" onclick="switchChat('room')" class="active">Stanza</button>
+                    <button id="btn-tab-lobby" onclick="switchChat('lobby')">Lobby</button>
+                </div>
+                <div id="room-chat-box" class="chat-box"></div>
+                <div id="lobby-chat-box-game" class="chat-box" style="display:none;"></div>
+                <div class="input-area">
+                    <input type="text" id="room-input" placeholder="Scrivi in chat...">
+                    <button id="send-room-btn" onclick="sendRoomMsg()">Invia</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <audio id="snd-move" src="move.mp3"></audio>
+    <audio id="snd-win" src="win.mp3"></audio>
+    <audio id="snd-chat" src="chat.mp3"></audio>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
